@@ -57,7 +57,7 @@ function severeImpact($data){
     if($data['periodType'] == "days"){
         $days = $data["timeToElapse"];
         // get the factor and calculate the infectionsByRequestedTime
-        $factor = (floor($days / 3));
+        $factor = floor($days / 3);
         $power = bcpow(2, $factor);
 
     }else if($data['periodType'] == "weeks"){

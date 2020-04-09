@@ -65,8 +65,10 @@ function severeImpact($data){
     }
 
     // get the factor and calculate the infectionsByRequestedTime
-    $factor = ($days / 3);
-    $infectionsByRequestedTime = floor(($currentlyInfected * pow(2, $factor)));
+    $factor = intval(floor($days / 3));
+    $power = bcpow(2, $factor);
+
+    $infectionsByRequestedTime = ($currentlyInfected * $power);
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover
     $percent = 0.15;

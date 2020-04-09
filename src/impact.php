@@ -31,7 +31,7 @@ class Impact implements JsonSerializable
         return $this->severeCasesByRequestedTime;
     }
 
-    public function gethospitalBedsByRequestedTime() 
+    public function getHospitalBedsByRequestedTime() 
     {
         return $this->hospitalBedsByRequestedTime;
     }
@@ -42,8 +42,8 @@ class Impact implements JsonSerializable
         [
             'currentlyInfected'   => $this->getCurrentlyInfected(),
             'infectionsByRequestedTime' => $this->getInfectionsByRequestedTime(),
-            'severeCasesByRequestedTime' => $this->getsevereCasesByRequestedTime(),
-            'hospitalBedsByRequestedTime' => $this->gethospitalBedsByRequestedTime()
+            'severeCasesByRequestedTime' => $this->getSevereCasesByRequestedTime(),
+            'hospitalBedsByRequestedTime' => $this->getHospitalBedsByRequestedTime()
         ];
     }
 }
@@ -66,16 +66,16 @@ function impact($data){
 
     // get the factor and calculate the infectionsByRequestedTime
     $factor = ($days / 3);
-    $infectionsByRequestedTime = ($currentlyInfected * pow(2, $factor));
+    $infectionsByRequestedTime = floor(($currentlyInfected * pow(2, $factor)));
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover
     $percent = 0.15;
-    $severeCasesByRequestedTime = ($percent * $infectionsByRequestedTime);
+    $severeCasesByRequestedTime = floor(($percent * $infectionsByRequestedTime));
 
     // calculate the number of available hospital beds for severe COVID-19 positive patients by the requested time
     $totalHospitalBeds = $data['totalHospitalBeds'];
     $availableBedsforPositivePatients = (0.35 * $totalHospitalBeds);
-    $hospitalBedsByRequestedTime = ($availableBedsforPositivePatients - $severeCasesByRequestedTime);
+    $hospitalBedsByRequestedTime = floor(($availableBedsforPositivePatients - $severeCasesByRequestedTime));
 
     // create an instance of Impact
     $impact_obj = new Impact(array(

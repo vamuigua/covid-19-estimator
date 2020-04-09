@@ -4,32 +4,32 @@
 			"name": "Africa",
 			"avgAge": 19.7,
 			"avgDailyIncomeInUSD": 3,
-			"avgDailyIncomePopulation": 0.59
+			"avgDailyIncomePopulation": 0.7
 		},
 		"periodType": "days",
-		"timeToElapse": 154,
-		"reportedCases": 2107,
-		"population": 23524050,
-		"totalHospitalBeds": 1251582
+		"timeToElapse": 137,
+		"reportedCases": 611,
+		"population": 31552300,
+		"totalHospitalBeds": 1636641
 	},
 	"estimate": {
 		"impact": {
-			"currentlyInfected": 21070,
-			"infectionsByRequestedTime": 47445422074348175000,
-			"severeCasesByRequestedTime": 7116813311152226000,
-			"hospitalBedsByRequestedTime": -7116813311151788000,
-			"casesForICUByRequestedTime": 2372271103717409000,
-			"casesForVentilatorsByRequestedTime": 948908441486963600,
-			"dollarsInFlight": "1.2932673149025823e+22"
+			"currentlyInfected": 6110,
+			"infectionsByRequestedTime": 214976513462763520,
+			"severeCasesByRequestedTime": 32246477019414530,
+			"hospitalBedsByRequestedTime": -32246477018841704,
+			"casesForICUByRequestedTime": 10748825673138176,
+			"casesForVentilatorsByRequestedTime": 4299530269255270,
+			"dollarsInFlight": 61848742923237065000
 		},
 		"severeImpact": {
-			"currentlyInfected": 105350,
-			"infectionsByRequestedTime": 237227110371740880000,
-			"severeCasesByRequestedTime": 35584066555761130000,
-			"hospitalBedsByRequestedTime": -35584066555760693000,
-			"casesForICUByRequestedTime": 11861355518587044000,
-			"casesForVentilatorsByRequestedTime": 4744542207434818000,
-			"dollarsInFlight": "6.466336574512913e+22"
+			"currentlyInfected": 30550,
+			"infectionsByRequestedTime": 1074882567313817600,
+			"severeCasesByRequestedTime": 161232385097072640,
+			"hospitalBedsByRequestedTime": -161232385096499800,
+			"casesForICUByRequestedTime": 53744128365690880,
+			"casesForVentilatorsByRequestedTime": 21497651346276350,
+			"dollarsInFlight": 309243714616185300000
 		}
 	}
 }

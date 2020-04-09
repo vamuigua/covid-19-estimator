@@ -56,21 +56,26 @@ function impact($data){
     // find the periodType to calculate the days in the correct format
     if($data['periodType'] == "days"){
         $days = $data["timeToElapse"];
+        // get the factor and calculate the infectionsByRequestedTime
+        $factor = intval(floor($days / 3));
+        $power = pow(2, $factor);
     }
     else if($data['periodType'] == "weeks"){
         $weeks = $data["timeToElapse"];
         $days = $weeks * 7;
+        // get the factor and calculate the infectionsByRequestedTime
+        $factor = intval(floor($days / 3));
+        $power = bcpow(2, $factor);
     }
     else if($data['periodType'] == "months"){
         $months = $data["timeToElapse"];
         $days = $months * 30;
+        // get the factor and calculate the infectionsByRequestedTime
+        $factor = intval(floor($days / 3));
+        $power = bcpow(2, $factor);
     }
 
-    // get the factor and calculate the infectionsByRequestedTime
-    $factor = intval(floor($days / 3));
-
-    $power = bcpow(2, $factor);
-
+    // calculate infectionsByRequestedTime
     $infectionsByRequestedTime = ($currentlyInfected * $power);
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover

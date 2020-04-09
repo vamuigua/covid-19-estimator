@@ -54,38 +54,33 @@ function impact($data){
     $currentlyInfected = $data["reportedCases"] * 10;
 
     // find the periodType to calculate the days in the correct format
-    if($data['periodType'] == "days"){
+    if($data['periodType'] === "days"){
         $days = $data["timeToElapse"];
-        // get the factor and calculate the infectionsByRequestedTime
-        $factor = floor($days / 3); 
-        $power = bcpow(2, $factor);
     }
-    else if($data['periodType'] == "weeks"){
+    else if($data['periodType'] === "weeks"){
         $weeks = $data["timeToElapse"];
         $days = $weeks * 7;
-        // get the factor and calculate the infectionsByRequestedTime
-        $factor = intval(floor($days / 3));
-        $power = bcpow(2, $factor);
     }
-    else if($data['periodType'] == "months"){
+    else if($data['periodType'] === "months"){
         $months = $data["timeToElapse"];
         $days = $months * 30;
-        // get the factor and calculate the infectionsByRequestedTime
-        $factor = intval(floor($days / 3));
-        $power = bcpow(2, $factor);
     }
+
+    // get the factor and calculate the infectionsByRequestedTime
+    $factor = intval($days / 3); 
+    $power = (2 ** $factor);
 
     // calculate infectionsByRequestedTime
     $infectionsByRequestedTime = ($currentlyInfected * $power);
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover
     $percent = 0.15;
-    $severeCasesByRequestedTime = floor(($percent * $infectionsByRequestedTime));
+    $severeCasesByRequestedTime = ($percent * $infectionsByRequestedTime);
 
     // calculate the number of available hospital beds for severe COVID-19 positive patients by the requested time
     $totalHospitalBeds = $data['totalHospitalBeds'];
     $availableBedsforPositivePatients = (0.35 * $totalHospitalBeds);
-    $hospitalBedsByRequestedTime = floor(($availableBedsforPositivePatients - $severeCasesByRequestedTime));
+    $hospitalBedsByRequestedTime = ceil(($availableBedsforPositivePatients - $severeCasesByRequestedTime));
 
     // create an instance of Impact
     $impact_obj = new Impact(array(

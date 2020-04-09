@@ -7,6 +7,9 @@ class Impact implements JsonSerializable
     protected $infectionsByRequestedTime;
     protected $severeCasesByRequestedTime;
     protected $hospitalBedsByRequestedTime;
+    protected $casesForICUByRequestedTime;
+    protected $casesForVentilatorsByRequestedTime;
+    protected $dollarsInFlight;
 
     public function __construct(array $data) 
     {
@@ -14,6 +17,9 @@ class Impact implements JsonSerializable
         $this->infectionsByRequestedTime = $data['infectionsByRequestedTime'];
         $this->severeCasesByRequestedTime = $data['severeCasesByRequestedTime'];
         $this->hospitalBedsByRequestedTime = $data['hospitalBedsByRequestedTime'];
+        $this->casesForICUByRequestedTime = $data['casesForICUByRequestedTime'];
+        $this->casesForVentilatorsByRequestedTime = $data['casesForVentilatorsByRequestedTime'];
+        $this->dollarsInFlight = $data['dollarsInFlight'];
     }
 
     public function getCurrentlyInfected() 
@@ -36,6 +42,21 @@ class Impact implements JsonSerializable
         return $this->hospitalBedsByRequestedTime;
     }
 
+    public function getCasesForICUByRequestedTime() 
+    {
+        return $this->casesForICUByRequestedTime;
+    }
+
+    public function getCasesForVentilatorsByRequestedTime() 
+    {
+        return $this->casesForVentilatorsByRequestedTime;
+    }
+
+    public function getDollarsInFlight() 
+    {
+        return $this->dollarsInFlight;
+    }
+
     public function jsonSerialize()
     {
         return 
@@ -43,7 +64,10 @@ class Impact implements JsonSerializable
             'currentlyInfected'   => $this->getCurrentlyInfected(),
             'infectionsByRequestedTime' => $this->getInfectionsByRequestedTime(),
             'severeCasesByRequestedTime' => $this->getSevereCasesByRequestedTime(),
-            'hospitalBedsByRequestedTime' => $this->getHospitalBedsByRequestedTime()
+            'hospitalBedsByRequestedTime' => $this->getHospitalBedsByRequestedTime(),
+            'casesForICUByRequestedTime' => $this->getCasesForICUByRequestedTime(),
+            'casesForVentilatorsByRequestedTime' => $this->getCasesForVentilatorsByRequestedTime(),
+            'dollarsInFlight' => $this->getDollarsInFlight()
         ];
     }
 }
@@ -80,12 +104,27 @@ function impact($data){
     $availableBedsforPositivePatients = (0.35 * $totalHospitalBeds);
     $hospitalBedsByRequestedTime = ceil(($availableBedsforPositivePatients - $severeCasesByRequestedTime));
 
+    // calculate casesForICUByRequestedTime
+    $casesForICUByRequestedTime = (0.05 * $infectionsByRequestedTime);
+
+    // calculate casesForVentilatorsByRequestedTime
+    $casesForVentilatorsByRequestedTime = floor(0.02 * $infectionsByRequestedTime);
+
+    // calculate dollarsInFlight
+    $avgDailyIncomePopulation = $data['region']['avgDailyIncomePopulation'];
+    $avgDailyIncomeInUSD = $data['region']['avgDailyIncomeInUSD'];
+    $dollarsInFlight = $infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $days;
+    $dollarsInFlight = round($dollarsInFlight, 2);
+
     // create an instance of Impact
     $impact_obj = new Impact(array(
-        'currentlyInfected' => $currentlyInfected,  // int
-        'infectionsByRequestedTime' => $infectionsByRequestedTime, //int
-        'severeCasesByRequestedTime' => $severeCasesByRequestedTime, //int
-        'hospitalBedsByRequestedTime' => $hospitalBedsByRequestedTime //int
+        'currentlyInfected' => $currentlyInfected, 
+        'infectionsByRequestedTime' => $infectionsByRequestedTime, 
+        'severeCasesByRequestedTime' => $severeCasesByRequestedTime, 
+        'hospitalBedsByRequestedTime' => $hospitalBedsByRequestedTime,
+        'casesForICUByRequestedTime' => $casesForICUByRequestedTime,
+        'casesForVentilatorsByRequestedTime' => $casesForVentilatorsByRequestedTime,
+        'dollarsInFlight' => $dollarsInFlight
     ));
 
     $impact_arr = json_decode(json_encode($impact_obj), true);

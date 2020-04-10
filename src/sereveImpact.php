@@ -114,7 +114,7 @@ function severeImpact($data){
     $avgDailyIncomePopulation = $data['region']['avgDailyIncomePopulation'];
     $avgDailyIncomeInUSD = $data['region']['avgDailyIncomeInUSD'];
     $dollarsInFlight = $infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $days;
-    $dollarsInFlight = round($dollarsInFlight, 2);
+    // $dollarsInFlight = round($dollarsInFlight, 2);
 
     // create an instance of SevereImpact
     $severeImpact_obj = new SevereImpact(array(

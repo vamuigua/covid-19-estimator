@@ -113,10 +113,9 @@ function severeImpact($data){
     // calculate dollarsInFlight
     $avgDailyIncomePopulation = $data['region']['avgDailyIncomePopulation'];
     $avgDailyIncomeInUSD = $data['region']['avgDailyIncomeInUSD'];
-    $dollarsInFlight = ((floatval($infectionsByRequestedTime) * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $days);
-    // $dollarsInFlight = floor($dollarsInFlight) / 100;
-    $dollarsInFlight = ($dollarsInFlight);
-
+    $dollarsInFlight = (($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD) / $days);
+    $dollarsInFlight = floor($dollarsInFlight);
+    
     // create an instance of SevereImpact
     $severeImpact_obj = new SevereImpact(array(
         'currentlyInfected' => $currentlyInfected, 

@@ -97,7 +97,7 @@ function severeImpact($data){
     $infectionsByRequestedTime = $currentlyInfected * (2 ** $factor);
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover
-    $severeCasesByRequestedTime = (0.15 * $infectionsByRequestedTime);
+    $severeCasesByRequestedTime = intval(0.15 * $infectionsByRequestedTime);
 
     // calculate the number of available hospital beds for severe COVID-19 positive patients by the requested time
     $totalHospitalBeds = $data['totalHospitalBeds'];

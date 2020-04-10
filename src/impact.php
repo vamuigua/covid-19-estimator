@@ -115,8 +115,9 @@ function impact($data){
     // calculate dollarsInFlight
     $avgDailyIncomePopulation = $data['region']['avgDailyIncomePopulation'];
     $avgDailyIncomeInUSD = $data['region']['avgDailyIncomeInUSD'];
-    $dollarsInFlight = ($infectionsByRequestedTime * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $days);
-    $dollarsInFlight = floor($dollarsInFlight) / 100;
+    $dollarsInFlight = (floatval($infectionsByRequestedTime) * $avgDailyIncomePopulation * $avgDailyIncomeInUSD * $days);
+    // $dollarsInFlight = floor($dollarsInFlight) / 10;
+    $dollarsInFlight = ($dollarsInFlight);
 
     // create an instance of Impact
     $impact_obj = new Impact(array(

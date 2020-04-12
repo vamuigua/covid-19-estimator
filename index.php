@@ -91,7 +91,6 @@
 				document.getElementById("send_data").innerHTML = "Go Estimate Again!";
 				// parse the array to an object
 				var obj = JSON.parse(result);
-				console.log(obj);
 				// Impact Results
 				document.getElementById("impactCurrentlyInfected").innerHTML = obj.impact.currentlyInfected;
 				document.getElementById("impactInfectionsByRequestedTime").innerHTML = obj.impact.infectionsByRequestedTime;

@@ -1,10 +1,19 @@
-.main-content {
-	background: #0f2027;
-	background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
-	background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-}
 .container {
-	background: #c9d6ff;
-	background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
-	background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+	background-color: #093145;
+}
+
+h1,
+h2,
+h3,
+p,
+label {
+	color: white;
+}
+
+body {
+	font-size: x-large;
+}
+
+hr.hr-line {
+	border: 1px solid white;
 }

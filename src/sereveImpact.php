@@ -102,7 +102,7 @@ function severeImpact($data){
     // calculate the number of available hospital beds for severe COVID-19 positive patients by the requested time
     $totalHospitalBeds = $data['totalHospitalBeds'];
     $availableBedsforPositivePatients = (0.35 * $totalHospitalBeds);
-    $hospitalBedsByRequestedTime = floor($availableBedsforPositivePatients - $severeCasesByRequestedTime);
+    $hospitalBedsByRequestedTime = round(($availableBedsforPositivePatients - $severeCasesByRequestedTime), 0);
     
     // check if $hospitalBedsByRequestedTime is negative
     if($hospitalBedsByRequestedTime < 0){

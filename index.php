@@ -10,8 +10,7 @@
 	<meta name=”robots” content=”index, follow”>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/main2.css">
     <title>Covid-19 Estimator</title>
   </head>
   <body>
@@ -89,7 +88,6 @@
 
 	<!-- JavaScript -->
 	<script type="text/javascript" src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		//Ajax for Sending data
 		$('#insert_form').on("submit", function(event){

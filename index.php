@@ -55,6 +55,7 @@
 					</form>
 				</div>
 			</div>
+			
 			<!-- RESULTS -->
 			<hr>
 			<div class="d-flex justify-content-center">

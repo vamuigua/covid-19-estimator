@@ -3,9 +3,6 @@
 require 'impact.php';
 require 'sereveImpact.php';
 
-// $json_data = file_get_contents("data.json");
-// $data = json_decode($json_data, true);
-
 function covid19ImpactEstimator($data)
 {
   $impact = impact($data);

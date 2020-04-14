@@ -104,11 +104,11 @@ function impact($data){
     $availableBedsforPositivePatients = (0.35 * $totalHospitalBeds);
     $hospitalBedsByRequestedTime = round(($availableBedsforPositivePatients - $severeCasesByRequestedTime), 0);
     
-    // check if $hospitalBedsByRequestedTime is negative
-    if($hospitalBedsByRequestedTime < 0){
-        $hospitalBedsByRequestedTime = abs($hospitalBedsByRequestedTime) + 1;
-        $hospitalBedsByRequestedTime = $hospitalBedsByRequestedTime * -1;
-    }
+    // // check if $hospitalBedsByRequestedTime is negative
+    // if($hospitalBedsByRequestedTime < 0){
+    //     $hospitalBedsByRequestedTime = floor(abs($hospitalBedsByRequestedTime));
+    //     $hospitalBedsByRequestedTime = $hospitalBedsByRequestedTime * -1;
+    // }
 
     // calculate casesForICUByRequestedTime
     $casesForICUByRequestedTime = floor(0.05 * $infectionsByRequestedTime);

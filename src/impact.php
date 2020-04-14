@@ -91,7 +91,7 @@ function impact($data){
     }
 
     // get the factor and calculate the infectionsByRequestedTime
-    $factor = round(($days / 3), 0);
+    $factor = floor($days / 3);
 
     // calculate infectionsByRequestedTime
     $infectionsByRequestedTime = ($currentlyInfected * (2 ** $factor));

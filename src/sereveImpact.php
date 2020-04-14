@@ -94,7 +94,7 @@ function severeImpact($data){
     $factor = floor($days / 3);
 
     // calculate infectionsByRequestedTime
-    $infectionsByRequestedTime = ($currentlyInfected * (2 ** $factor));
+    $infectionsByRequestedTime = floor($currentlyInfected * (2 ** $factor));
 
     // calculate the estimated number of severe positive cases that will require hospitalization to recover
     $severeCasesByRequestedTime = round((0.15 * $infectionsByRequestedTime), 0);

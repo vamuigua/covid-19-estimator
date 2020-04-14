@@ -106,7 +106,7 @@ function impact($data){
     
     // check if $hospitalBedsByRequestedTime is negative
     if($hospitalBedsByRequestedTime < 0){
-        $hospitalBedsByRequestedTime = floor(abs($hospitalBedsByRequestedTime));
+        $hospitalBedsByRequestedTime = round((abs($hospitalBedsByRequestedTime)), 0);
         $hospitalBedsByRequestedTime = $hospitalBedsByRequestedTime * -1;
     }
 
